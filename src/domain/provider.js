@@ -17,18 +17,19 @@ export class Provider {
 }
 
 /**
- * @implements Provider<T>
+ * @implements {Provider<T>}
  * @template T
  */
 export class SingletonProvider {
 
     constructor(){
+        /** @type {T|null} */
         this.cache = null
     }
 
     /** 
      * @param {Array<any>} container
-     * @returns T
+     * @returns {T}
      */
     produce(container){
         if(this.cache === null){
@@ -40,7 +41,7 @@ export class SingletonProvider {
     /**
      * @abstract
      * @param {Array<any>} container
-     * @returns T
+     * @returns {T}
      */
     makeOnce(container){
         throw new NotImplementedError()
@@ -73,7 +74,7 @@ export class NormalProvider extends SingletonProvider {
 
     /**
      * @param {Array<any>} container
-     * @returns T
+     * @returns {T}
      */
     makeOnce(container){
         return this.recipe(container)

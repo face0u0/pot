@@ -8,10 +8,14 @@ export class Container{
     
     /**
      * 
-     * @param {Object<string, Ingredient<any>>} ingredientsHash 
+     * @param {Array<Ingredient<any>>} ingredients
      */
-    constructor(ingredientsHash){
+    constructor(ingredients){
 
+        /** @type {Object<string, Ingredient<any>>} */
+        const ingredientsHash = {}
+        ingredients.forEach(i => ingredientsHash[i.name] = i)
+        
         this.__ingredientsHash = ingredientsHash
     }
 
@@ -60,18 +64,15 @@ export class ContainerFactory {
 
         const notResolvedRecipes = copy(recipes)
 
-        /** @type {Object<string, Ingredient<any>>} */
-        const ingredientsHash = {}
+        /** @type {Array<Ingredient<any>>} */
+        const ingredients = []
 
         while(notResolvedRecipes.length > 0){
             const prevNotResolvedLen = notResolvedRecipes.length
             notResolvedRecipes.forEach(recipe => {
-                const ingredientNameList = Object.keys(ingredientsHash)
-                const isConstructable = recipe.dependencies.every(dependencyName => includes(ingredientNameList, dependencyName))
 
-                if(isConstructable){
-                    const dependencyIngredients = recipe.dependencies.map(dependency => ingredientsHash[dependency])
-                    ingredientsHash[recipe.name] = new Ingredient(recipe.name, dependencyIngredients, recipe.provider)
+                if(recipe.isConstructableFrom(ingredients)){
+                    ingredients.push(recipe.createIngredient(ingredients))
                     remove(notResolvedRecipes, recipe)
                 }
             })
@@ -81,7 +82,7 @@ export class ContainerFactory {
             }
         }
 
-        return new Container(ingredientsHash)
+        return new Container(ingredients)
     }
 
     /**

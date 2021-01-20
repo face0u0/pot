@@ -37,3 +37,12 @@ export class DuplicateNameError extends Error {
         this.name = "DuplicateNameError";
     }
 }
+
+export class IngredientLackError extends Error {
+
+    constructor() {
+        super("ingredient is lacked");
+        this.name = "IngredientLackError";
+    }
+}
+

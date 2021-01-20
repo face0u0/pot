@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../dist/ioc-pot.js"></script>
+</head>
+<body>
+    <script>
+
+        function Egg(){
+            this.size = "L"
+        }
+        
+        function Omlet(egg){
+            this.egg = egg
+        }
+
+        const pot = new this.IocPot.Pot()
+
+        // define constructor to name (should be unique!) and dependency.
+        pot.define("egg", Egg, [])
+        pot.define("omlet", Omlet, ["egg"])
+
+        // resolve dependency...
+        pot.resolve()
+
+        // get some products!
+        const egg = pot.locate("egg")
+        const omlet = pot.locate("omlet")
+
+    </script>
+</body>
+</html>

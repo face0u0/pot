@@ -48,16 +48,27 @@ export class Container{
     /**
      * 
      * @param {string} name 
+     * @returns {any}
      */
     create(name){
         const product = this.__ingredientsHash[name]
         if(product !== undefined){
             /** @type {Array<any>} */
-            const products = product.dependencies.map(dependency => this.create(dependency.name))
-            return product.provider.produce(products)
+            return this.__produce(product)
         } else {
             throw new IngredientNotFoundError()
         }
+    }
+
+    /**
+     * 
+     * @param {Ingredient<T>} ingredient 
+     * @returns {T}
+     * @template T
+     */
+    __produce(ingredient){
+        const sources = ingredient.dependencies.map(dependency => this.__produce(dependency))
+        return ingredient.provider.produce(sources)
     }
 
 }

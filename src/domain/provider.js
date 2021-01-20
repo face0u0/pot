@@ -9,7 +9,7 @@ export class Provider {
 
     /**
      * @param {Array<any>} container // instance hashmap
-     * @returns T
+     * @returns {T}
      */
     produce(container){
         throw new NotImplementedError()

@@ -1,5 +1,5 @@
-import { Constructable } from "./constructable"
-import { Provider } from "./provider"
+import { Constructable } from "./constructable.js"
+import { Provider } from "./provider.js"
 
 /**
  * @template T

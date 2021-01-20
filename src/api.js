@@ -1,7 +1,6 @@
 import { Container } from "./domain/container.js";
 import { NormalProvider } from "./domain/provider.js";
 import { Recipe } from "./domain/recipe.js";
-import { UnexpectedError } from "./domain/throwable.js";
 import { concat, getOne } from "./util/arrays.js";
 
 export class Pot {

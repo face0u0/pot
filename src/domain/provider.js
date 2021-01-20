@@ -1,5 +1,4 @@
 import { Constructable } from "./constructable.js"
-import { Ingredient } from "./ingredients.js"
 import { NotImplementedError } from "./throwable.js"
 
 /**

@@ -30,6 +30,7 @@ export class Container{
                 const satisfied = stuff.dependencies.filter(dependency => !includes(ingredientsName, dependency)).length === 0 // can create only to use ingredients 
                 if(satisfied){
                     ingredientsHash[name] = new Ingredient(name, stuff.clazz, stuff.dependencies.map(dependency => ingredientsHash[dependency]), stuff.provider)
+                    delete recipeHash[name]
                     ingredientSatisfiedFlag = true
                 }
             })

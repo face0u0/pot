@@ -14,11 +14,11 @@ export class UnexpectedError extends Error {
     }
 }
 
-export class CircularReferenceError extends Error {
+export class UnresolvedError extends Error {
 
     constructor() {
-        super("there is circular reference");
-        this.name = "CircularReferenceError";
+        super("there is circular reference or not defined reference");
+        this.name = "UnresolvedError";
     }
 }
 

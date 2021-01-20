@@ -1,4 +1,4 @@
-import { Container } from "./domain/container.js";
+import { Container, ContainerFactory } from "./domain/container.js";
 import { NormalProvider } from "./domain/provider.js";
 import { Recipe } from "./domain/recipe.js";
 import { concat, getOne } from "./util/arrays.js";
@@ -38,7 +38,7 @@ export class Ioc {
 
     resolve(){
         const aliasRecipes = this.__resolveAliases()
-        this.__container = new Container(concat(this.__recipes, aliasRecipes) )
+        this.__container = new ContainerFactory().produce(concat(this.__recipes, aliasRecipes) )
     }
 
     /**

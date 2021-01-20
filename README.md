@@ -22,7 +22,7 @@ import { Pot } from "ioc-pot"
 // create new ioc-container
 const new pot = new Pot()
 
-// define constructor to name (should be uniq!) and dependency.
+// define constructor to name (should be unique!) and dependency.
 pot.define("egg", Egg, [])
 pot.define("omlet", Omlet, ["egg"])
 

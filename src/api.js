@@ -24,7 +24,7 @@ export class Pot {
      * @param {object} clazz 
      * @param {Array<string>} dependencies
      */
-    add(name, clazz, dependencies){
+    define(name, clazz, dependencies){
         this.__recipes.push(new Recipe(name, clazz, dependencies, new NormalProvider(clazz)))
     }
 

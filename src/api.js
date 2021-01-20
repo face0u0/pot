@@ -1,6 +1,6 @@
-import { Container } from "./src/domain/container.js";
-import { NormalProvider, Provider } from "./src/domain/provider.js";
-import { Recipe } from "./src/domain/recipe.js";
+import { Container } from "./domain/container.js";
+import { NormalProvider, Provider } from "./domain/provider.js";
+import { Recipe } from "./domain/recipe.js";
 
 export class Pot {
 
@@ -24,4 +24,17 @@ export class Pot {
     resolve(){
         this.__container = new Container(this.__recipes)
     }
+
+    /**
+     * 
+     * @param {string} name 
+     */
+    locate(name){
+        if(this.__container === null){
+            return null
+        }
+        return this.__container.create(name)
+    }
 }
+
+globalThis.Pot = Pot

@@ -47,7 +47,9 @@ export class Container{
     create(name){
         const product = this.__ingredientsHash[name]
         if(product !== undefined){
-            return product
+            /** @type {Array<any>} */
+            const products = product.dependencies.map(dependency => this.create(dependency.name))
+            return product.provider.produce(products)
         } else {
             throw new IngredientNotFoundError()
         }

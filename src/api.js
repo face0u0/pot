@@ -1,6 +1,6 @@
-import { Container, ContainerFactory } from "./domain/container.js";
-import { NormalProvider } from "./domain/provider.js";
-import { Recipe } from "./domain/recipe.js";
+import { Container, ContainerFactory } from "./ioc/container.js";
+import { NormalProvider } from "./ioc/provider.js";
+import { Recipe } from "./ioc/recipe.js";
 import { concat, getOne } from "./util/arrays.js";
 
 export class Ioc {

@@ -1,5 +1,5 @@
 import { includes, isUnique } from "../util/arrays.js";
-import { Ingredient } from "./ingredients.js";
+import { Ingredient } from "./ingredient.js";
 import { Recipe } from "./recipe.js";
 import { CircularReferenceError, DuplicateNameError, IngredientNotFoundError, UnexpectedError } from "./throwable.js";
 

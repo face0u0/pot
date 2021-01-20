@@ -1,4 +1,3 @@
-
 /**
  * 
  * @param {Array<any>} array 
@@ -20,4 +19,37 @@ export const concat = (...arrays) => {
         concatted = concatted.concat(array)
     })
     return concatted
+}
+
+/**
+ * 
+ * @param {Array<T>} array 
+ * @returns {T}
+ * @template T
+ */
+export const getOne = (array) => {
+    switch(array.length){
+        case 0:
+            throw new HasNoElementError()
+        case 1:
+            return array[0]
+        default:
+            throw new HasMultipleElementError()
+    }
+}
+
+export class HasNoElementError extends Error {
+
+    constructor() {
+        super("list is empty");
+        this.name = "HasNoElementError";
+    }
+}
+
+export class HasMultipleElementError extends Error {
+
+    constructor() {
+        super("list is not one");
+        this.name = "HasMultipleElementError";
+    }
 }

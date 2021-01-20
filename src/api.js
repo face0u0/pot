@@ -2,7 +2,7 @@ import { Container } from "./domain/container.js";
 import { NormalProvider } from "./domain/provider.js";
 import { Recipe } from "./domain/recipe.js";
 import { UnexpectedError } from "./domain/throwable.js";
-import { concat } from "./util/arrays.js";
+import { concat, getOne } from "./util/arrays.js";
 
 export class Pot {
 
@@ -68,17 +68,11 @@ export class Pot {
     /**
      * 
      * @param {string} name
+     * @returns {Recipe<any>}
      */
     __findRecipe(name){
         const recipes = this.__recipes.filter(recipe => recipe.name === name)
-        switch(recipes.length){
-            case 0:
-                throw new RecipeUnresolvedError(name)
-            case 1:
-                return recipes[0]
-            default:
-                throw new UnexpectedError()
-        }
+        return getOne(recipes)
     }
 }
 

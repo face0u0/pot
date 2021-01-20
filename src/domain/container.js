@@ -1,7 +1,7 @@
 import { includes, isUnique } from "../util/arrays.js";
 import { Ingredient } from "./ingredient.js";
 import { Recipe } from "./recipe.js";
-import { CircularReferenceError, DuplicateNameError, IngredientNotFoundError, UnexpectedError } from "./throwable.js";
+import { UnresolvedError, DuplicateNameError, IngredientNotFoundError, UnexpectedError } from "./throwable.js";
 
 export class Container{
     
@@ -38,7 +38,7 @@ export class Container{
             if(Object.keys(ingredientsHash).length === Object.keys(recipeHash).length){
                 break
             } else if (!ingredientSatisfiedFlag){
-                throw new CircularReferenceError()
+                throw new UnresolvedError()
             }
         }
 

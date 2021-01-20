@@ -1,4 +1,4 @@
-import { includes, isUnique } from "../util/arrays.js";
+import { copy, includes, isUnique } from "../util/arrays.js";
 import { Ingredient } from "./ingredient.js";
 import { Recipe } from "./recipe.js";
 import { UnresolvedError, DuplicateNameError, IngredientNotFoundError, UnexpectedError } from "./throwable.js";
@@ -15,27 +15,24 @@ export class Container{
             throw new DuplicateNameError()
         }
         
-        /** @type {Object<string, Recipe<any>>} */
-        const recipeHash = {}
-        recipes.forEach(recipe => recipeHash[recipe.name] = recipe)
+        let notRegisterdRecipes = copy(recipes)
 
         /** @type {Object<string, Ingredient<any>>} */
         const ingredientsHash = {}
         while(true){
             let ingredientSatisfiedFlag = false
-            Object.keys(recipeHash).forEach(name => {
-                const stuff = recipeHash[name]
+            notRegisterdRecipes = notRegisterdRecipes.filter(recipe => {
+                const ingredientNameList = Object.keys(ingredientsHash)
+                const isConstructable = recipe.dependencies.every(dependencyName => includes(ingredientNameList, dependencyName))
 
-                const ingredientsName = Object.keys(ingredientsHash)
-                const satisfied = stuff.dependencies.filter(dependency => !includes(ingredientsName, dependency)).length === 0 // can create only to use ingredients 
-                if(satisfied){
-                    ingredientsHash[name] = new Ingredient(name, stuff.dependencies.map(dependency => ingredientsHash[dependency]), stuff.provider)
-                    delete recipeHash[name]
+                if(isConstructable){
+                    ingredientsHash[recipe.name] = new Ingredient(recipe.name, recipe.dependencies.map(dependency => ingredientsHash[dependency]), recipe.provider)
                     ingredientSatisfiedFlag = true
                 }
+                return !isConstructable
             })
             
-            if(Object.keys(ingredientsHash).length === recipes.length){
+            if(notRegisterdRecipes.length == 0){
                 break
             } else if (!ingredientSatisfiedFlag){
                 throw new UnresolvedError()

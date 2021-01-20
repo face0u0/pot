@@ -48,6 +48,16 @@ export const isUnique = (array) => {
     return set.size === array.length
 }
 
+/**
+ * 
+ * @param {Array<T>} array 
+ * @returns {Array<T>}
+ * @template T
+ */
+export const copy = (array) => {
+    return array.slice()
+}
+
 export class HasNoElementError extends Error {
 
     constructor() {

@@ -17,11 +17,16 @@
             this.egg = egg
         }
 
+        function Dish(omlet){
+            this.content = omlet
+        }
+
         const pot = new this.IocPot.Pot()
 
         // define constructor to name (should be unique!) and dependency.
         pot.define("egg", Egg, [])
         pot.define("omlet", Omlet, ["egg"])
+        pot.define("dish", Dish, ["omlet"])
 
         // resolve dependency...
         pot.resolve()
@@ -29,6 +34,7 @@
         // get some products!
         const egg = pot.locate("egg")
         const omlet = pot.locate("omlet")
+        const dish = pot.locate("dish")
 
     </script>
 </body>

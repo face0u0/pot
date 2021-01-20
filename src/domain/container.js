@@ -15,28 +15,27 @@ export class Container{
             throw new DuplicateNameError()
         }
         
-        const notRegisterdRecipes = copy(recipes)
+        const notResolvedRecipes = copy(recipes)
 
         /** @type {Object<string, Ingredient<any>>} */
         const ingredientsHash = {}
 
         while(true){
-            let isAnyConstructedFlag = false
-            notRegisterdRecipes.forEach(recipe => {
+            const prevNotResolvedLen = notResolvedRecipes.length
+            notResolvedRecipes.forEach(recipe => {
                 const ingredientNameList = Object.keys(ingredientsHash)
                 const isConstructable = recipe.dependencies.every(dependencyName => includes(ingredientNameList, dependencyName))
 
                 if(isConstructable){
                     const dependencyIngredients = recipe.dependencies.map(dependency => ingredientsHash[dependency])
                     ingredientsHash[recipe.name] = new Ingredient(recipe.name, dependencyIngredients, recipe.provider)
-                    isAnyConstructedFlag = true
-                    remove(notRegisterdRecipes, recipe)
+                    remove(notResolvedRecipes, recipe)
                 }
             })
             
-            if(notRegisterdRecipes.length == 0){
+            if(notResolvedRecipes.length == 0){
                 break
-            } else if (!isAnyConstructedFlag){
+            } else if (prevNotResolvedLen === notResolvedRecipes.length){
                 throw new UnresolvedError()
             }
         }

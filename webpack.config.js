@@ -8,6 +8,8 @@ module.exports = {
     
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'pot.min.js'
+        filename: 'pot.js',
+        library: "pot",
+        libraryTarget: 'umd'
     }
 }

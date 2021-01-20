@@ -1,1 +1,1 @@
-export { Pot } from "./src/api.js";
+export { Ioc as Pot } from "./src/api.js";

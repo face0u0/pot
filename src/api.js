@@ -3,7 +3,7 @@ import { NormalProvider } from "./domain/provider.js";
 import { Recipe } from "./domain/recipe.js";
 import { concat, getOne } from "./util/arrays.js";
 
-export class Pot {
+export class Ioc {
 
     constructor(){
 

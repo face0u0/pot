@@ -24,7 +24,7 @@ export class Ioc {
      * @param {Array<string>} dependencies
      */
     define(name, clazz, dependencies){
-        this.__recipes.push(new Recipe(name, clazz, dependencies, new NormalProvider(clazz)))
+        this.__recipes.push(new Recipe(name, dependencies, new NormalProvider(clazz)))
     }
 
     /**
@@ -59,7 +59,7 @@ export class Ioc {
         const recipes = Object.keys(this.__aliasesHashMap).map(aliasName => {
             const preDefinedName = this.__aliasesHashMap[aliasName]
             const recipe = this.__findRecipe(preDefinedName)
-            return new Recipe(aliasName, recipe.clazz, recipe.dependencies, recipe.provider)
+            return new Recipe(aliasName, recipe.dependencies, recipe.provider)
         })
         return recipes
     }

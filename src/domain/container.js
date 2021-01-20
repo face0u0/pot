@@ -27,7 +27,8 @@ export class Container{
                 const isConstructable = recipe.dependencies.every(dependencyName => includes(ingredientNameList, dependencyName))
 
                 if(isConstructable){
-                    ingredientsHash[recipe.name] = new Ingredient(recipe.name, recipe.dependencies.map(dependency => ingredientsHash[dependency]), recipe.provider)
+                    const dependencyIngredients = recipe.dependencies.map(dependency => ingredientsHash[dependency])
+                    ingredientsHash[recipe.name] = new Ingredient(recipe.name, dependencyIngredients, recipe.provider)
                     isAnyConstructedFlag = true
                     remove(notRegisterdRecipes, recipe)
                 }

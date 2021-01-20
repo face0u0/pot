@@ -1,5 +1,5 @@
 import { includes } from "../util/arrays.js"
-import { Ingredient } from "./ingredient.js"
+import { Ingredient, IngredientHash } from "./ingredient.js"
 import { Provider } from "./provider.js"
 import { IngredientLackError } from "./throwable.js"
 
@@ -22,7 +22,7 @@ export class Recipe {
 
     /**
      * 
-     * @param {Array<Ingredient<any>>} ingredients
+     * @param {IngredientHash} ingredients
      * @returns {Ingredient<T>} 
      */
     createIngredient(ingredients){
@@ -30,20 +30,15 @@ export class Recipe {
             throw new IngredientLackError()
         }
 
-        /** @type {Object<string, Ingredient<any>>} */
-        const ingredientsHash = {}
-
-        ingredients.forEach(i => ingredientsHash[i.name] = i)
-        const dependencyIngredients = this.dependencies.map(dependency => ingredientsHash[dependency])
+        const dependencyIngredients = this.dependencies.map(dependency => ingredients.get(dependency))
         return new Ingredient(this.name, dependencyIngredients, this.provider)
     }
 
     /**
-     * @param {Array<Ingredient<any>>} ingredients 
+     * @param {IngredientHash} ingredients 
      * @returns {boolean}
      */
     isConstructableFrom(ingredients){
-        const ingredientNameList = ingredients.map(i => i.name)
-        return this.dependencies.every(dependencyName => includes(ingredientNameList, dependencyName))
+        return this.dependencies.every(dependencyName => ingredients.exist(dependencyName))
     }
 }

@@ -1,6 +1,6 @@
 import { copy, includes, isUnique, remove } from "../util/arrays.js";
 import { Factory } from "./factory.js";
-import { Ingredient } from "./ingredient.js";
+import { Ingredient, IngredientHash } from "./ingredient.js";
 import { Recipe } from "./recipe.js";
 import { UnresolvedError, DuplicateNameError, IngredientNotFoundError, UnexpectedError } from "./throwable.js";
 
@@ -8,15 +8,11 @@ export class Container{
     
     /**
      * 
-     * @param {Array<Ingredient<any>>} ingredients
+     * @param {IngredientHash} ingredients
      */
     constructor(ingredients){
-
-        /** @type {Object<string, Ingredient<any>>} */
-        const ingredientsHash = {}
-        ingredients.forEach(i => ingredientsHash[i.name] = i)
         
-        this.__ingredientsHash = ingredientsHash
+        this.__ingredients = ingredients
     }
 
     /**
@@ -25,13 +21,9 @@ export class Container{
      * @returns {any}
      */
     create(name){
-        const product = this.__ingredientsHash[name]
-        if(product !== undefined){
-            /** @type {Array<any>} */
-            return this.__produce(product)
-        } else {
-            throw new IngredientNotFoundError()
-        }
+        const product = this.__ingredients.get(name)
+        /** @type {Array<any>} */
+        return this.__produce(product)
     }
 
     /**
@@ -64,15 +56,14 @@ export class ContainerFactory {
 
         const notResolvedRecipes = copy(recipes)
 
-        /** @type {Array<Ingredient<any>>} */
-        const ingredients = []
+        const ingredients = new IngredientHash()
 
         while(notResolvedRecipes.length > 0){
             const prevNotResolvedLen = notResolvedRecipes.length
             notResolvedRecipes.forEach(recipe => {
 
                 if(recipe.isConstructableFrom(ingredients)){
-                    ingredients.push(recipe.createIngredient(ingredients))
+                    ingredients.put(recipe.createIngredient(ingredients))
                     remove(notResolvedRecipes, recipe)
                 }
             })

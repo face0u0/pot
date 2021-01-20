@@ -58,6 +58,18 @@ export const copy = (array) => {
     return array.slice()
 }
 
+/**
+ * @param {Array<T>} array
+ * @param {T} val
+ * @template T 
+ */
+export const remove = (array, val) => {
+    const index = array.indexOf(val);
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
+}
+
 export class HasNoElementError extends Error {
 
     constructor() {

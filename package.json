@@ -16,7 +16,7 @@
     "url": "https://github.com/face0u0/pot/issues"
   },
   "homepage": "https://github.com/face0u0/pot",
-  "dependencies": {
+  "devDependencies": {
     "webpack": "^5.16.0",
     "webpack-cli": "^4.4.0"
   }

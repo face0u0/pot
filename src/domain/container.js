@@ -1,7 +1,7 @@
 import { includes } from "../util/arrays.js";
 import { Ingredient } from "./ingredients.js";
 import { Recipe } from "./recipe.js";
-import { CircularReferenceError, UnexpectedError } from "./throwable.js";
+import { CircularReferenceError, IngredientNotFoundError, UnexpectedError } from "./throwable.js";
 
 export class Container{
     
@@ -57,11 +57,3 @@ export class Container{
 
 }
 
-
-export class IngredientNotFoundError extends Error {
-
-    constructor() {
-        super("ingredient not found");
-        this.name = "UnexpIngredientNotFoundErrorectedError";
-    }
-}

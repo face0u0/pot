@@ -1,5 +1,5 @@
 import { Container } from "./domain/container.js";
-import { NormalProvider, Provider } from "./domain/provider.js";
+import { NormalProvider } from "./domain/provider.js";
 import { Recipe } from "./domain/recipe.js";
 
 export class Pot {

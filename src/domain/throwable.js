@@ -21,3 +21,11 @@ export class CircularReferenceError extends Error {
         this.name = "CircularReferenceError";
     }
 }
+
+export class IngredientNotFoundError extends Error {
+
+    constructor() {
+        super("ingredient not found");
+        this.name = "UnexpIngredientNotFoundErrorectedError";
+    }
+}

@@ -38,6 +38,16 @@ export const getOne = (array) => {
     }
 }
 
+/**
+ * 
+ * @param {Array<any>} array 
+ * @returns {boolean}
+ */
+export const isUnique = (array) => {
+    const set = new Set(array)
+    return set.size === array.length
+}
+
 export class HasNoElementError extends Error {
 
     constructor() {

@@ -1,7 +1,7 @@
-import { includes } from "../util/arrays.js";
+import { includes, isUnique } from "../util/arrays.js";
 import { Ingredient } from "./ingredients.js";
 import { Recipe } from "./recipe.js";
-import { CircularReferenceError, IngredientNotFoundError, UnexpectedError } from "./throwable.js";
+import { CircularReferenceError, DuplicateNameError, IngredientNotFoundError, UnexpectedError } from "./throwable.js";
 
 export class Container{
     
@@ -10,6 +10,10 @@ export class Container{
      * @param {Array<Recipe<any>>} recipes 
      */
     constructor(recipes){
+
+        if(!isUnique(recipes.map(r => r.name))){
+            throw new DuplicateNameError()
+        }
         
         /** @type {Object<string, Recipe<any>>} */
         const recipeHash = {}

@@ -26,6 +26,14 @@ export class IngredientNotFoundError extends Error {
 
     constructor() {
         super("ingredient not found");
-        this.name = "UnexpIngredientNotFoundErrorectedError";
+        this.name = "IngredientNotFoundError";
+    }
+}
+
+export class DuplicateNameError extends Error {
+
+    constructor() {
+        super("same name defined");
+        this.name = "DuplicateNameError";
     }
 }

@@ -2,7 +2,7 @@
 
 pot is extremely simple ioc container for js.
 
-- small filesize (about 1.2kb gzipped!)
+- small filesize (about 1.3kb gzipped!)
 - depends no library
 
 ## usage

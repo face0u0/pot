@@ -86,5 +86,3 @@ export class RecipeUnresolvedError extends Error {
         this.name = "RecipeUnresolvedError";
     }
 }
-
-globalThis.Pot = Pot

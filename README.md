@@ -20,7 +20,7 @@ function Omlet(egg){
 import { Pot } from "ioc-pot"
 
 // create new ioc-container
-const new pot = new Pot()
+const pot = new Pot()
 
 // define constructor to name (should be unique!) and dependency.
 pot.define("egg", Egg, [])

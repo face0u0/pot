@@ -35,7 +35,7 @@ export class Container{
                 }
             })
             
-            if(Object.keys(ingredientsHash).length === Object.keys(recipeHash).length){
+            if(Object.keys(ingredientsHash).length === recipes.length){
                 break
             } else if (!ingredientSatisfiedFlag){
                 throw new UnresolvedError()

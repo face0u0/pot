@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
 
-    mode: 'production',
+    mode: 'development',
 
     entry: path.resolve(__dirname, "index.js"),
     
@@ -12,6 +12,4 @@ module.exports = {
         library: "IocPot",
         libraryTarget: 'umd'
     },
-
-    devtool: "source-map"
 }

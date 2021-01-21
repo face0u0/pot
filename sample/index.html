@@ -26,7 +26,7 @@
         // define constructor to name (should be unique!) and dependency.
         pot.service("dish", Dish, ["omlet"])
         pot.service("egg", Egg, [])
-        pot.service("omlet", Omlet, ["egga"])
+        pot.service("omlet", Omlet, ["egg"])
 
         // resolve dependency...
         pot.resolve()

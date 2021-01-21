@@ -67,7 +67,6 @@ export class NormalProvider extends SingletonProvider {
         this.recipe = (container) => {
             //@ts-ignore
             const binded = clazz.bind.apply(clazz, [null].concat(container))
-            // @ts-ignore
             return new binded()
         }
     }

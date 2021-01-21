@@ -24,9 +24,9 @@
         const pot = new this.IocPot.Pot()
 
         // define constructor to name (should be unique!) and dependency.
-        pot.define("dish", Dish, ["omlet"])
-        pot.define("egg", Egg, [])
-        pot.define("omlet", Omlet, ["egga"])
+        pot.service("dish", Dish, ["omlet"])
+        pot.service("egg", Egg, [])
+        pot.service("omlet", Omlet, ["egga"])
 
         // resolve dependency...
         pot.resolve()

@@ -1,6 +1,6 @@
 import { Factory } from "./factory.js";
 import { Ingredient } from "./ingredient.js";
-import { CallableHash } from "./callableHash";
+import { CallableHash } from "./callableHash.js";
 import { Recipe } from "./recipe.js";
 import { UnresolvedError, DuplicateNameError, IngredientNotFoundError, UnexpectedError } from "./throwable.js";
 
@@ -57,7 +57,7 @@ export class ResolverFactory {
 
         const notResolvedRecipes = recipes.duplicate()
 
-        while(notResolvedRecipes.isEmpty()){
+        while(notResolvedRecipes.hasAny()){
             const prevNotResolvedLen = notResolvedRecipes.size()
 
             notResolvedRecipes.forEach(recipe => {

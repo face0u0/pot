@@ -87,7 +87,7 @@ export class CallableHash {
         /** @type {CallableHash<T & Callable>} */
         const callableHash = new CallableHash()
 
-        callableHash.forEach(t => {
+        this.forEach(t => {
             callableHash.put(t)
         })
 
@@ -97,8 +97,8 @@ export class CallableHash {
     /**
      * @returns {boolean}
      */
-    isEmpty(){
-        return this.size() === 0
+    hasAny(){
+        return this.size() !== 0
     }
 
     /**

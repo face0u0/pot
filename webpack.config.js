@@ -11,5 +11,7 @@ module.exports = {
         filename: 'ioc-pot.js',
         library: "IocPot",
         libraryTarget: 'umd'
-    }
+    },
+
+    devtool: "source-map"
 }

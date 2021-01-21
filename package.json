@@ -4,7 +4,8 @@
   "description": "pot is extremely simple ioc container for js.",
   "main": "index.js",
   "scripts": {
-    "build:production": "webpack --mode production"
+    "build:pro": "webpack --mode production",
+    "build:dev": "webpack --mode development"
   },
   "repository": {
     "type": "git",

@@ -7,7 +7,7 @@ import { NotImplementedError } from "./throwable.js";
 export class Factory{
 
     /**
-     * @param {Array<any>} any
+     * @param {Array<Instance>} any
      * @returns {T}
      */
     produce(...any){

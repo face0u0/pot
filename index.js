@@ -1,3 +1,1 @@
-import { Ioc } from "./src/api.js";
-
-export const Pot = Ioc
+export { Container as Pot } from "./src/api.js";

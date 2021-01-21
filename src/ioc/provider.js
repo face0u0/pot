@@ -8,7 +8,7 @@ import { NotImplementedError } from "./throwable.js"
 export class Provider {
 
     /**
-     * @param {Array<any>} container // instance hashmap
+     * @param {Array<Instance>} container // instance hashmap
      * @returns {T}
      */
     produce(container){
@@ -28,7 +28,7 @@ export class SingletonProvider {
     }
 
     /** 
-     * @param {Array<any>} container
+     * @param {Array<Instance>} container
      * @returns {T}
      */
     produce(container){
@@ -40,7 +40,7 @@ export class SingletonProvider {
     
     /**
      * @abstract
-     * @param {Array<any>} container
+     * @param {Array<Instance>} container
      * @returns {T}
      */
     makeOnce(container){
@@ -62,7 +62,7 @@ export class NormalProvider extends SingletonProvider {
     constructor(clazz){
         super()
         /**
-         * @param {Array<any>} container
+         * @param {Array<Instance>} container
          */
         this.recipe = (container) => {
             //@ts-ignore
@@ -72,7 +72,7 @@ export class NormalProvider extends SingletonProvider {
     }
 
     /**
-     * @param {Array<any>} container
+     * @param {Array<Instance>} container
      * @returns {T}
      */
     makeOnce(container){

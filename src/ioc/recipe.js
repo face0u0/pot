@@ -1,5 +1,5 @@
-import { includes } from "../util/arrays.js"
-import { Ingredient, IngredientHash } from "./ingredient.js"
+import { Ingredient } from "./ingredient.js"
+import { CallableHash } from "./callableHash"
 import { Provider } from "./provider.js"
 import { IngredientLackError } from "./throwable.js"
 
@@ -22,7 +22,7 @@ export class Recipe {
 
     /**
      * 
-     * @param {IngredientHash} ingredients
+     * @param {CallableHash<Ingredient<Instance>>} ingredients
      * @returns {Ingredient<T>} 
      */
     createIngredient(ingredients){
@@ -35,7 +35,7 @@ export class Recipe {
     }
 
     /**
-     * @param {IngredientHash} ingredients 
+     * @param {CallableHash<Ingredient<Instance>>} ingredients 
      * @returns {boolean}
      */
     isConstructableFrom(ingredients){

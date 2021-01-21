@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="../dist/ioc-pot.js"></script>
+    <script type="module" src="../src/api-global.js"></script>
 </head>
 <body>
     <script>
@@ -24,7 +24,7 @@
             this.content = omlet
         }
 
-        const pot = new this.IocPot.Pot()
+        const pot = new Pot()
 
         // define constructor to name (should be unique!) and dependency.
         pot.service("dish", Dish, ["omlet"])

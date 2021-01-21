@@ -1,7 +1,7 @@
 {
-  "name": "pot",
+  "name": "ioc-pot",
   "version": "1.0.0",
-  "description": "pot is extremely simple ioc container for js.",
+  "description": "ioc-pot is extremely simple ioc container for js.",
   "main": "index.js",
   "scripts": {
     "build:pro": "webpack --mode production",

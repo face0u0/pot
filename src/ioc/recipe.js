@@ -1,5 +1,5 @@
 import { Ingredient } from "./ingredient.js"
-import { CallableHash } from "./callableHash"
+import { CallableHash } from "./callableHash.js"
 import { Provider } from "./provider.js"
 import { IngredientLackError } from "./throwable.js"
 

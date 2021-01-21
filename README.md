@@ -2,7 +2,7 @@
 
 pot is extremely simple ioc container for js.
 
-- small filesize (about 1.3kb gzipped!)
+- small filesize (about 1.2kb gzipped!)
 - depends no library
 
 ## usage
@@ -10,11 +10,18 @@ pot is extremely simple ioc container for js.
 - sample class
 ```js
 function Egg(){
+    console.log("egg created!")
     this.size = "L"
 }
 
 function Omlet(egg){
+    console.log("omlet created!")
     this.egg = egg
+}
+
+function Dish(omlet){
+    console.log("dish created!")
+    this.content = omlet
 }
 ```
 
@@ -26,8 +33,10 @@ import { Pot } from "ioc-pot"
 const pot = new Pot()
 
 // define constructor to name (should be unique!) and dependency.
-pot.define("egg", Egg, [])
-pot.define("omlet", Omlet, ["egg"])
+pot.service("dish", Dish, ["omlet"])
+pot.service("egg", Egg, [])
+pot.service("omlet", Omlet, ["egg"])
+pot.alias("dinner", "dish")
 
 // resolve dependency...
 pot.resolve()
@@ -35,4 +44,6 @@ pot.resolve()
 // get some products!
 const egg = pot.locate("egg")
 const omlet = pot.locate("omlet")
+const dish = pot.locate("dish")
+const dinner = pot.locate("dinner")
 ```

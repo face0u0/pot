@@ -1,6 +1,6 @@
 {
   "name": "pot",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "pot is extremely simple ioc container for js.",
   "main": "index.js",
   "scripts": {

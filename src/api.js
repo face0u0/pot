@@ -1,1 +1,1 @@
-export { Container as Pot } from "./ioc/container.js";
+export * from "./ioc/container.js";

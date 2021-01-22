@@ -8,8 +8,10 @@ module.exports = {
     
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'ioc-pot.js',
-        library: "IocPot",
-        libraryTarget: 'umd'
+        filename: 'index.js',
+        library: "",
+        libraryExport: '',
+        libraryTarget: 'umd',
+        globalObject: "this"
     },
 }

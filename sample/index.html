@@ -33,7 +33,7 @@
             patch(dish){
                 if(!this.prevs.includes(dish)){
                     this.prevs.push(dish)
-                    console.log(dish)
+                    dish.content.egg.size = "LL"
                 }
             }
         })
@@ -47,6 +47,7 @@
         const omlet = pot.locate("omlet")
         const dish = pot.locate("dish")
         const dinner = pot.locate("dinner")
+        console.log(dish,dinner)
     </script>
 </head>
 <body>

@@ -1,5 +1,5 @@
 import { CallableHash } from "./callableHash.js"
-import { NormalProvider } from "./provider.js"
+import { ConstructorSingletonProvider, Provider } from "./provider.js"
 import { Recipe } from "./recipe.js"
 import { Resolver, ResolverFactory } from "./resolver.js"
 
@@ -24,7 +24,17 @@ export class Container {
      * @param {object} clazz 
      */
     service(name, dependencies, clazz){
-        this.__define(new Recipe(name, dependencies, new NormalProvider(clazz)))
+        this.def(name, dependencies, new ConstructorSingletonProvider(clazz))
+    }
+
+    /**
+     * 
+     * @param {string} name 
+     * @param {Array<string>} dependencies
+     * @param {Provider<Instance>} provider 
+     */
+    def(name, dependencies, provider){
+        this.__define(new Recipe(name, dependencies, provider))
     }
 
     /**

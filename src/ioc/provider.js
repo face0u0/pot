@@ -53,7 +53,7 @@ export class SingletonProvider {
  * @extends SingletonProvider<T>
  * @template T
  */
-export class NormalProvider extends SingletonProvider {
+export class ConstructorSingletonProvider extends SingletonProvider {
 
     /**
      * 

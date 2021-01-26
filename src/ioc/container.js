@@ -1,4 +1,5 @@
 import { CallableHash } from "./callableHash.js"
+import { Decorator, SilentDecorator } from "./decorator.js"
 import { ConstructorSingletonProvider, Provider } from "./provider.js"
 import { Recipe } from "./recipe.js"
 import { Resolver, ResolverFactory } from "./resolver.js"
@@ -26,6 +27,15 @@ export class Container {
     defConstructor(name, dependencies, clazz){
         this.def(name, dependencies, new ConstructorSingletonProvider(clazz))
     }
+    
+    /**
+     * @param {string} name 
+     * @param {Decorator<T>} decorator
+     * @template T 
+     */
+    decorate(name, decorator){
+        this.__recipes.get(name).setDecorator(decorator)
+    }
 
     /**
      * 
@@ -34,7 +44,7 @@ export class Container {
      * @param {Provider<Instance>} provider 
      */
     def(name, dependencies, provider){
-        this.__define(new Recipe(name, dependencies, provider))
+        this.__define(new Recipe(name, dependencies, provider, new SilentDecorator()))
     }
 
     /**
@@ -79,7 +89,7 @@ export class Container {
         const recipes = Object.keys(this.__aliasesHashMap).map(aliasName => {
             const preDefinedName = this.__aliasesHashMap[aliasName]
             const recipe = this.__recipes.get(preDefinedName)
-            return new Recipe(aliasName, recipe.dependencies, recipe.provider)
+            return new Recipe(aliasName, recipe.dependencies, recipe.provider, recipe.decorator)
         })
         return recipes
     }

@@ -2,6 +2,7 @@ import { Ingredient } from "./ingredient.js"
 import { CallableHash } from "./callableHash.js"
 import { Provider } from "./provider.js"
 import { IngredientLackError } from "./throwable.js"
+import { Decorator } from "./decorator.js"
 
 /**
  * @template T
@@ -12,12 +13,21 @@ export class Recipe {
      * 
      * @param {string} name 
      * @param {Array<string>} dependencies 
-     * @param {Provider<T>} provider 
+     * @param {Provider<T>} provider
+     * @param {Decorator} decorator 
      */
-    constructor(name, dependencies, provider){
+    constructor(name, dependencies, provider, decorator){
         this.name = name
         this.dependencies = dependencies
         this.provider = provider
+        this.decorator = decorator
+    }
+
+    /**
+     * @param {Decorator} decorator 
+     */
+    setDecorator(decorator){
+        this.decorator = decorator
     }
 
     /**
@@ -31,7 +41,7 @@ export class Recipe {
         }
 
         const dependencyIngredients = this.dependencies.map(dependency => ingredients.get(dependency))
-        return new Ingredient(this.name, dependencyIngredients, this.provider)
+        return new Ingredient(this.name, dependencyIngredients, this.provider, this.decorator)
     }
 
     /**

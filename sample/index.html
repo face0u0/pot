@@ -28,6 +28,11 @@
         pot.defConstructor("dish", ["omlet"], Dish)
         pot.defConstructor("egg", [], Egg)
         pot.defConstructor("omlet", ["egg"], Omlet)
+        pot.decorate("dish", {
+            patch(dish){
+                console.log(dish)
+            }
+        })
         pot.alias("dinner", "dish")
 
         // resolve dependency...

@@ -23,7 +23,9 @@ export class Resolver{
     create(name){
         const ingredient = this.__ingredients.get(name)
         /** @type {Array<Instance>} */
-        return this.__produce(ingredient)
+        const product = this.__produce(ingredient)
+        ingredient.decorator.patch(product)
+        return product
     }
 
     /**

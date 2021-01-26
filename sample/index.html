@@ -29,8 +29,12 @@
         pot.defConstructor("egg", [], Egg)
         pot.defConstructor("omlet", ["egg"], Omlet)
         pot.decorate("dish", {
+            prevs: [],
             patch(dish){
-                console.log(dish)
+                if(!this.prevs.includes(dish)){
+                    this.prevs.push(dish)
+                    console.log(dish)
+                }
             }
         })
         pot.alias("dinner", "dish")

@@ -21,9 +21,9 @@ export class Resolver{
      * @returns {Instance}
      */
     create(name){
-        const product = this.__ingredients.get(name)
+        const ingredient = this.__ingredients.get(name)
         /** @type {Array<Instance>} */
-        return this.__produce(product)
+        return this.__produce(ingredient)
     }
 
     /**

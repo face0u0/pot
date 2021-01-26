@@ -23,7 +23,7 @@ export class Container {
      * @param {Array<string>} dependencies
      * @param {object} clazz 
      */
-    service(name, dependencies, clazz){
+    defConstructor(name, dependencies, clazz){
         this.def(name, dependencies, new ConstructorSingletonProvider(clazz))
     }
 

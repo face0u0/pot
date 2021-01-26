@@ -25,9 +25,9 @@
         const pot = new Container()
 
         // define constructor to name (should be unique!) and dependency.
-        pot.service("dish", ["omlet"], Dish)
-        pot.service("egg", [], Egg)
-        pot.service("omlet", ["egg"], Omlet)
+        pot.defConstructor("dish", ["omlet"], Dish)
+        pot.defConstructor("egg", [], Egg)
+        pot.defConstructor("omlet", ["egg"], Omlet)
         pot.alias("dinner", "dish")
 
         // resolve dependency...

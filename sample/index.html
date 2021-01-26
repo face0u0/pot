@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="module" src="../src/api-global.js"></script>
-</head>
-<body>
-    <script>
+    <script type="module">
+
+        import {Container} from "../index.js"
 
         function Egg(){
             console.log("egg created!")
@@ -24,12 +23,12 @@
             this.content = omlet
         }
 
-        const pot = new Pot()
+        const pot = new Container()
 
         // define constructor to name (should be unique!) and dependency.
-        pot.service("dish", Dish, ["omlet"])
-        pot.service("egg", Egg, [])
-        pot.service("omlet", Omlet, ["egg"])
+        pot.service("dish", ["omlet"], Dish)
+        pot.service("egg", [], Egg)
+        pot.service("omlet", ["egg"], Omlet)
         pot.alias("dinner", "dish")
 
         // resolve dependency...
@@ -40,7 +39,9 @@
         const omlet = pot.locate("omlet")
         const dish = pot.locate("dish")
         const dinner = pot.locate("dinner")
-
     </script>
+</head>
+<body>
+
 </body>
 </html>

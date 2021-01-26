@@ -1,3 +1,1 @@
-import { Container } from "./src/api.js";
-
-export default Container;
+export { Container } from "./src/api.js";

@@ -20,10 +20,10 @@ export class Container {
     /**
      * 
      * @param {string} name 
-     * @param {object} clazz 
      * @param {Array<string>} dependencies
+     * @param {object} clazz 
      */
-    service(name, clazz, dependencies){
+    service(name, dependencies, clazz){
         this.__define(new Recipe(name, dependencies, new NormalProvider(clazz)))
     }
 

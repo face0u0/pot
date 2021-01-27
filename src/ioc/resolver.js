@@ -24,7 +24,7 @@ export class Resolver{
         const ingredient = this.__ingredients.get(name)
         /** @type {Array<Instance>} */
         const product = this.__produce(ingredient)
-        ingredient.decorator.patch(product)
+        ingredient.decorator.observe(product)
         return product
     }
 

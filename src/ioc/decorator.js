@@ -11,7 +11,7 @@ export class Decorator{
      * 
      * @param {T} instance 
      */
-    patch(instance){
+    observe(instance){
         throw new NotImplementedError()
     }
 }
@@ -34,7 +34,7 @@ export class ExactryOnceDecorator{
      * 
      * @param {T} instance 
      */
-    patch(instance){
+    observe(instance){
         const isDecorated = this.prevs.some(t => (typeof t === "object") && t === instance)
         if(!isDecorated){
             this.prevs.push(instance)
@@ -60,7 +60,7 @@ export class SilentDecorator{
      * 
      * @param {Instance} instance 
      */
-    patch(instance){
+    observe(instance){
         // do nothing
     }
 }
